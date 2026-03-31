@@ -28,6 +28,9 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { AddSessionDrawer } from "./add-session-drawer";
+import { toast } from "sonner";
+import { deleteSession } from "@/actions/session";
+import { Spinner } from "../ui/spinner";
 
 type Session = {
   id: string;
@@ -66,7 +69,20 @@ export function SessionList({ sessions }: { sessions: Session[] }) {
 }
 
 function SessionCard({ session }: { session: Session }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  async function handleDelete() {
+    setLoading(true);
+    try {
+      await deleteSession(session.id);
+    } catch {
+      toast.error("Failed to delete the session.");
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  }
 
   return (
     <Card className="bg-muted/40 hover:bg-muted/60 active:bg-muted/80 cursor-pointer border-0 ring-0 transition-colors">
@@ -108,10 +124,16 @@ function SessionCard({ session }: { session: Session }) {
                 <button
                   type="button"
                   className="text-destructive hover:bg-destructive/10 flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors"
-                  onClick={() => setOpen(false)}
+                  onClick={handleDelete}
                 >
-                  <Trash2 className="size-4" />
-                  Delete
+                  {loading ? (
+                    <Spinner />
+                  ) : (
+                    <>
+                      <Trash2 className="size-4" />
+                      Delete
+                    </>
+                  )}
                 </button>
               </nav>
             </DrawerContent>
