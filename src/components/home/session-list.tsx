@@ -9,26 +9,20 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Plus, MoreHorizontal, Pencil, Trash2, Dumbbell } from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, Dumbbell } from "lucide-react";
+import { AddSessionDrawer } from "./add-session-drawer";
 
 type Session = {
   id: string;
   name: string;
 };
 
-const mockSessions: Session[] = [
-  { id: "1", name: "Upper Body" },
-  { id: "2", name: "Lower Body" },
-];
-
-export function SessionList() {
-  const sessions = mockSessions;
-
+export function SessionList({ sessions }: { sessions: Session[] }) {
   if (sessions.length === 0) {
     return (
       <div className="flex flex-col items-center gap-4 py-16 text-center">
         <p className="text-muted-foreground">No sessions yet.</p>
-        <AddSessionButton />
+        <AddSessionDrawer />
       </div>
     );
   }
@@ -76,19 +70,7 @@ export function SessionList() {
         </Card>
       ))}
 
-      <AddSessionButton />
+      <AddSessionDrawer />
     </div>
-  );
-}
-
-function AddSessionButton() {
-  return (
-    <button
-      type="button"
-      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-primary/20 py-4 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground active:bg-primary/5"
-    >
-      <Plus className="size-4" />
-      Add Session
-    </button>
   );
 }

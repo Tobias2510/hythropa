@@ -1,4 +1,7 @@
 import { auth } from "@/lib/auth";
+import { db } from "@/lib/db-connection";
+import { trainingSession } from "@/db/schema";
+import { eq, desc } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { SessionList } from "@/components/home/session-list";
@@ -12,6 +15,12 @@ export default async function HomePage() {
   if (!session?.user) redirect("/login");
 
   const { name, email } = session.user;
+
+  const sessions = await db
+    .select({ id: trainingSession.id, name: trainingSession.name })
+    .from(trainingSession)
+    .where(eq(trainingSession.userId, session.user.id))
+    .orderBy(desc(trainingSession.createdAt));
 
   return (
     <div className="min-h-svh px-4 py-6">
@@ -27,7 +36,7 @@ export default async function HomePage() {
           </div>
           <UserMenu name={name} email={email} />
         </header>
-        <SessionList />
+        <SessionList sessions={sessions} />
       </div>
     </div>
   );
