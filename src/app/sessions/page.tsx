@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { SessionList } from "@/components/sessions/session-list";
 import { UserMenu } from "@/components/sessions/user-menu";
 
-export default async function HomePage() {
+export default async function SessionsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });

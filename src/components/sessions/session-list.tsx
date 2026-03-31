@@ -90,7 +90,7 @@ function SessionCard({ session }: { session: Session }) {
 
   return (
     <Card
-      onClick={() => router.push(`/session/${session.id}`)}
+      onClick={() => router.push(`/sessions/${session.id}`)}
       className="bg-muted/40 hover:bg-muted/60 active:bg-muted/80 cursor-pointer border-0 ring-0 transition-colors"
     >
       <CardHeader className="items-center">
