@@ -75,7 +75,8 @@ function SessionCard({ session }: { session: Session }) {
 
   const router = useRouter();
 
-  async function handleDelete() {
+  async function handleDelete(e: React.MouseEvent) {
+    e.stopPropagation();
     setLoading(true);
     try {
       await deleteSession(session.id);
@@ -121,7 +122,10 @@ function SessionCard({ session }: { session: Session }) {
                 <button
                   type="button"
                   className="text-foreground hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpen(false);
+                  }}
                 >
                   <Pencil className="text-muted-foreground size-4" />
                   Edit
