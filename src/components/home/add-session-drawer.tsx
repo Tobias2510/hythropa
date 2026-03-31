@@ -58,7 +58,7 @@ export function AddSessionDrawer() {
       <DrawerTrigger asChild>
         <button
           type="button"
-          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-primary/20 py-4 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground active:bg-primary/5"
+          className="border-primary/20 text-muted-foreground hover:border-primary/40 hover:text-foreground active:bg-primary/5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed py-4 text-sm transition-colors"
         >
           <Plus className="size-4" />
           Add Session
@@ -94,7 +94,7 @@ export function AddSessionDrawer() {
           />
           {form.formState.errors.root && (
             <FieldError
-              className="mt-2 text-sm text-destructive"
+              className="text-destructive mt-2 text-sm"
               errors={[form.formState.errors.root]}
             />
           )}

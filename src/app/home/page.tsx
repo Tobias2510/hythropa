@@ -27,12 +27,10 @@ export default async function HomePage() {
       <div className="mx-auto w-full max-w-lg">
         <header className="mb-6 flex items-center justify-between">
           <div>
-            <p className="mb-1 text-xs font-medium tracking-widest text-primary uppercase">
+            <p className="text-primary mb-1 text-xs font-medium tracking-widest uppercase">
               Dashboard
             </p>
-            <h1 className="text-2xl font-bold tracking-tight">
-              Your Sessions
-            </h1>
+            <h1 className="text-2xl font-bold tracking-tight">Your Sessions</h1>
           </div>
           <UserMenu name={name} email={email} />
         </header>

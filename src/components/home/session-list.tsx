@@ -45,11 +45,11 @@ function SessionCard({ session }: { session: Session }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <Card className="cursor-pointer border-0 bg-muted/40 ring-0 transition-colors hover:bg-muted/60 active:bg-muted/80">
+    <Card className="bg-muted/40 hover:bg-muted/60 active:bg-muted/80 cursor-pointer border-0 ring-0 transition-colors">
       <CardHeader className="items-center">
         <div className="flex items-center gap-3">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-            <Dumbbell className="size-4 text-primary" />
+          <div className="bg-primary/10 flex size-9 shrink-0 items-center justify-center rounded-lg">
+            <Dumbbell className="text-primary size-4" />
           </div>
           <CardTitle>{session.name}</CardTitle>
         </div>
@@ -74,16 +74,16 @@ function SessionCard({ session }: { session: Session }) {
               <nav className="flex flex-col gap-1 px-4 pb-4">
                 <button
                   type="button"
-                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-foreground transition-colors hover:bg-muted"
+                  className="text-foreground hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors"
                   onClick={() => setOpen(false)}
                 >
-                  <Pencil className="size-4 text-muted-foreground" />
+                  <Pencil className="text-muted-foreground size-4" />
                   Edit
                 </button>
                 <Separator />
                 <button
                   type="button"
-                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-destructive transition-colors hover:bg-destructive/10"
+                  className="text-destructive hover:bg-destructive/10 flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   <Trash2 className="size-4" />

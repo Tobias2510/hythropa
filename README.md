@@ -60,12 +60,12 @@ A fitness tracker app for logging workouts, tracking progress, and hitting perso
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server |
-| `npm run build` | Production build |
+| Command         | Description           |
+| --------------- | --------------------- |
+| `npm run dev`   | Start dev server      |
+| `npm run build` | Production build      |
 | `npm run start` | Run production server |
-| `npm run lint` | Run ESLint |
+| `npm run lint`  | Run ESLint            |
 
 ## Project Structure
 

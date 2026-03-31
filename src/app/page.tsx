@@ -12,7 +12,7 @@ export default function Home() {
         <Features />
         <CTA />
       </main>
-      <footer className="py-8 text-center text-sm text-muted-foreground">
+      <footer className="text-muted-foreground py-8 text-center text-sm">
         NextRep &middot; {new Date().getFullYear()}
       </footer>
     </>

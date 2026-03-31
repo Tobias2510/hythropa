@@ -33,7 +33,7 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
       <DrawerTrigger asChild>
         <Button
           type="button"
-          className="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary/15 text-base font-semibold text-primary transition-colors hover:bg-primary/25"
+          className="bg-primary/15 text-primary hover:bg-primary/25 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-base font-semibold transition-colors"
         >
           {initial}
         </Button>
@@ -41,7 +41,7 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
       <DrawerContent>
         <DrawerHeader className="text-left">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/15 text-sm font-semibold text-primary">
+            <div className="bg-primary/15 text-primary flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
               {initial}
             </div>
             <div className="min-w-0">
@@ -58,9 +58,9 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
         <nav className="flex flex-col gap-1 px-4 py-2">
           <button
             type="button"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-muted"
+            className="text-foreground hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors"
           >
-            <Settings className="size-4 text-muted-foreground" />
+            <Settings className="text-muted-foreground size-4" />
             Settings
           </button>
         </nav>
@@ -72,7 +72,7 @@ export function UserMenu({ name, email }: { name: string; email: string }) {
             type="button"
             disabled={loggingOut}
             onClick={handleLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-destructive transition-colors hover:bg-destructive/10 disabled:opacity-50"
+            className="text-destructive hover:bg-destructive/10 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors disabled:opacity-50"
           >
             <LogOut className="size-4" />
             {loggingOut ? "Logging out..." : "Log out"}

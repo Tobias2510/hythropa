@@ -22,13 +22,13 @@ export function Navbar() {
       className={cn(
         "fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between px-6 transition-colors duration-300",
         scrolled
-          ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
+          ? "border-border/50 bg-background/80 border-b backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
       <Link
         href="/"
-        className="text-lg font-bold tracking-tight text-foreground"
+        className="text-foreground text-lg font-bold tracking-tight"
       >
         NextRep
       </Link>
