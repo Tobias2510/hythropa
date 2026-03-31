@@ -32,7 +32,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="h-[500px] w-[500px] rounded-full bg-primary/15 blur-[120px] md:h-[600px] md:w-[600px]"
+          className="h-[500px] w-[500px] rounded-full bg-primary/15 blur-[80px] md:h-[600px] md:w-[600px]"
         />
       </div>
 
@@ -71,7 +71,7 @@ export function Hero() {
           className="mt-8 flex flex-col gap-3 sm:flex-row"
         >
           <Button size="lg" asChild className="px-6">
-            <Link href="/login">
+            <Link href="/home">
               Get Started
               <ArrowRight className="ml-1 size-4" />
             </Link>

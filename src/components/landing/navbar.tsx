@@ -23,7 +23,7 @@ export function Navbar() {
         "fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between px-6 transition-colors duration-300",
         scrolled
           ? "border-b border-border/50 bg-background/80 backdrop-blur-xl"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <Link
