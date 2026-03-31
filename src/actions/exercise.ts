@@ -52,3 +52,30 @@ export async function deleteExercise(
 
   revalidatePath(`/sessions/${parsedSessionId}`);
 }
+
+const notesSchema = z.object({
+  exerciseId: z.uuid(),
+  notes: z.string().max(500, "Notes are too long."),
+});
+
+export async function updateExerciseNotes(data: {
+  exerciseId: string;
+  notes: string;
+}) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session?.user) {
+    throw new Error("Unauthorized");
+  }
+
+  const parsed = notesSchema.parse(data);
+
+  await db
+    .update(exercise)
+    .set({ notes: parsed.notes || null })
+    .where(eq(exercise.id, parsed.exerciseId));
+
+  revalidatePath(`/sessions`);
+}

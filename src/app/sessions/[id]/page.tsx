@@ -1,10 +1,10 @@
 import { ExerciseList } from "@/components/exercises/exercise-list";
 import { UserMenu } from "@/components/sessions/user-menu";
 import { Button } from "@/components/ui/button";
-import { exercise, trainingSession } from "@/db/schema";
+import { exercise, exerciseEntry, trainingSession } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db-connection";
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { ChevronLeft } from "lucide-react";
 import { headers } from "next/headers";
 import Link from "next/link";
@@ -37,9 +37,31 @@ export default async function SessionDetailPage({
 
   if (!found) notFound();
 
+  // Subquery: latest entry per exercise
+  const latestEntry = db
+    .select({
+      exerciseId: exerciseEntry.exerciseId,
+      weight: exerciseEntry.weight,
+      reps: exerciseEntry.reps,
+      rn: sql<number>`row_number() over (partition by ${exerciseEntry.exerciseId} order by ${exerciseEntry.createdAt} desc)`.as(
+        "rn",
+      ),
+    })
+    .from(exerciseEntry)
+    .as("latest_entry");
+
   const exercises = await db
-    .select({ id: exercise.id, name: exercise.name })
+    .select({
+      id: exercise.id,
+      name: exercise.name,
+      lastWeight: latestEntry.weight,
+      lastReps: latestEntry.reps,
+    })
     .from(exercise)
+    .leftJoin(
+      latestEntry,
+      and(eq(exercise.id, latestEntry.exerciseId), eq(latestEntry.rn, 1)),
+    )
     .where(eq(exercise.sessionId, found.id))
     .orderBy(desc(exercise.createdAt));
 

@@ -35,6 +35,8 @@ import Link from "next/link";
 type Exercise = {
   id: string;
   name: string;
+  lastWeight: number | null;
+  lastReps: number | null;
 };
 
 export function ExerciseList({
@@ -113,7 +115,14 @@ function ExerciseCard({
           <div className="bg-primary/10 flex size-9 shrink-0 items-center justify-center rounded-lg">
             <Dumbbell className="text-primary size-4" />
           </div>
-          <CardTitle>{exercise.name}</CardTitle>
+          <div>
+            <CardTitle>{exercise.name}</CardTitle>
+            {exercise.lastWeight != null && exercise.lastReps != null && (
+              <p className="text-muted-foreground text-xs">
+                {exercise.lastWeight} kg × {exercise.lastReps} reps
+              </p>
+            )}
+          </div>
         </div>
         <CardAction className="relative z-10 self-center">
           <Drawer open={open} onOpenChange={setOpen}>

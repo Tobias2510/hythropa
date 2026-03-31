@@ -1,7 +1,15 @@
 export * from "./auth-schema";
 
 import { relations } from "drizzle-orm";
-import { pgTable, text, timestamp, uuid, index } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+  index,
+  real,
+  integer,
+} from "drizzle-orm/pg-core";
 import { user, session, account } from "./auth-schema";
 
 export const trainingSession = pgTable(
@@ -32,6 +40,7 @@ export const exercise = pgTable(
   {
     id: uuid("id").primaryKey().defaultRandom(),
     name: text("name").notNull(),
+    notes: text("notes"),
     sessionId: uuid("session_id")
       .notNull()
       .references(() => trainingSession.id, { onDelete: "cascade" }),
@@ -55,9 +64,31 @@ export const trainingSessionRelations = relations(
   }),
 );
 
-export const exerciseRelations = relations(exercise, ({ one }) => ({
+export const exerciseEntry = pgTable(
+  "exercise_entry",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    exerciseId: uuid("exercise_id")
+      .notNull()
+      .references(() => exercise.id, { onDelete: "cascade" }),
+    weight: real("weight").notNull(),
+    reps: integer("reps").notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [index("exercise_entry_exerciseId_idx").on(table.exerciseId)],
+);
+
+export const exerciseRelations = relations(exercise, ({ one, many }) => ({
   trainingSession: one(trainingSession, {
     fields: [exercise.sessionId],
     references: [trainingSession.id],
+  }),
+  entries: many(exerciseEntry),
+}));
+
+export const exerciseEntryRelations = relations(exerciseEntry, ({ one }) => ({
+  exercise: one(exercise, {
+    fields: [exerciseEntry.exerciseId],
+    references: [exercise.id],
   }),
 }));
