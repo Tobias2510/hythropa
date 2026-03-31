@@ -27,12 +27,37 @@ export const userRelations = relations(user, ({ many }) => ({
   trainingSessions: many(trainingSession),
 }));
 
+export const exercise = pgTable(
+  "exercise",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    name: text("name").notNull(),
+    sessionId: uuid("session_id")
+      .notNull()
+      .references(() => trainingSession.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => new Date())
+      .notNull(),
+  },
+  (table) => [index("exercise_sessionId_idx").on(table.sessionId)],
+);
+
 export const trainingSessionRelations = relations(
   trainingSession,
-  ({ one }) => ({
+  ({ one, many }) => ({
     user: one(user, {
       fields: [trainingSession.userId],
       references: [user.id],
     }),
+    exercises: many(exercise),
   }),
 );
+
+export const exerciseRelations = relations(exercise, ({ one }) => ({
+  trainingSession: one(trainingSession, {
+    fields: [exercise.sessionId],
+    references: [trainingSession.id],
+  }),
+}));
