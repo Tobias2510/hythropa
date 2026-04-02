@@ -13,7 +13,7 @@ export default function Home() {
         <CTA />
       </main>
       <footer className="text-muted-foreground py-8 text-center text-sm">
-        NextRep &middot; {new Date().getFullYear()}
+        Hythropa &middot; {new Date().getFullYear()}
       </footer>
     </>
   );

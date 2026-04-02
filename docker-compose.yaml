@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: nextrep_postgres
+      POSTGRES_DB: hythropa_postgres
     ports:
       - "5432:5432"
     volumes:

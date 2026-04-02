@@ -15,7 +15,7 @@ This is NOT the Next.js you know. This version has breaking changes — APIs, co
 
 ## Architecture
 
-**NextRep** is a fitness tracker app (early stage) built on:
+**Hythropa** is a fitness tracker app (early stage) built on:
 
 - **Next.js 16** (App Router, `src/app/`) with React 19 and React Server Components
 - **TypeScript** in strict mode; path alias `@/*` maps to `src/*`

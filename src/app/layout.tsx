@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NextRep",
-  description: "Your fitness-tracker",
+  title: "Hythropa",
+  description: "Your fitness-tracker to show your progress.",
 };
 
 export default function RootLayout({

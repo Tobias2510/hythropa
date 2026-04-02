@@ -1,4 +1,4 @@
-# NextRep
+# Hythropa
 
 A fitness tracker app for logging workouts, tracking progress, and hitting personal records.
 
@@ -37,7 +37,7 @@ A fitness tracker app for logging workouts, tracking progress, and hitting perso
    Copy `.env.example` to `.env` (or create `.env`) with:
 
    ```
-   DATABASE_URL=postgresql://root:root@localhost:5432/nextrep_postgres
+   DATABASE_URL=postgresql://root:root@localhost:5432/hythropa_postgres
    BETTER_AUTH_SECRET=<random-secret>
    BETTER_AUTH_URL=http://localhost:3000
    ```

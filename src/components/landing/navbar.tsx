@@ -30,7 +30,7 @@ export function Navbar() {
         href="/"
         className="text-foreground text-lg font-bold tracking-tight"
       >
-        NextRep
+        Hythropa
       </Link>
       <Button variant="ghost" size="sm" asChild>
         <Link href="/login">Log in</Link>

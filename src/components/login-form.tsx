@@ -73,9 +73,9 @@ export function LoginForm({
               <div className="flex size-8 items-center justify-center rounded-md">
                 <GalleryVerticalEndIcon className="size-6" />
               </div>
-              <span className="sr-only">NextRep</span>
+              <span className="sr-only">Hythropa</span>
             </Link>
-            <h1 className="text-xl font-bold">Welcome to NextRep</h1>
+            <h1 className="text-xl font-bold">Welcome to Hythropa</h1>
             <FieldDescription>
               Don&apos;t have an account? <Link href="/signup">Sign up</Link>
             </FieldDescription>
