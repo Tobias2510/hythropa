@@ -7,8 +7,8 @@ A fitness tracker app for logging workouts, tracking progress, and hitting perso
 - **Framework:** Next.js 16 (App Router, React Server Components)
 - **Language:** TypeScript (strict mode)
 - **UI:** React 19, Tailwind CSS v4, shadcn/ui, Framer Motion
-- **Database:** PostgreSQL with Drizzle ORM
-- **Auth:** better-auth (email/password, OAuth)
+- **Database:** PostgreSQL (or Neon) with Drizzle ORM
+- **Auth:** better-auth (email/password)
 - **Theme:** Dark mode default, system preference via next-themes
 
 ## Prerequisites
@@ -40,7 +40,10 @@ A fitness tracker app for logging workouts, tracking progress, and hitting perso
    DATABASE_URL=postgresql://root:root@localhost:5432/hythropa_postgres
    BETTER_AUTH_SECRET=<random-secret>
    BETTER_AUTH_URL=http://localhost:3000
+   USE_NEON=false
    ```
+
+   Set `USE_NEON=true` to use the Neon serverless HTTP driver instead of the standard `pg` Pool.
 
 4. **Run database migrations:**
 
@@ -66,29 +69,6 @@ A fitness tracker app for logging workouts, tracking progress, and hitting perso
 | `npm run build` | Production build      |
 | `npm run start` | Run production server |
 | `npm run lint`  | Run ESLint            |
-
-## Project Structure
-
-```
-src/
-├── app/                  # Pages and routes (App Router)
-│   ├── api/auth/         # Auth API endpoints (better-auth)
-│   ├── home/             # Dashboard (authenticated)
-│   ├── login/            # Login page
-│   ├── page.tsx          # Landing page
-│   └── layout.tsx        # Root layout
-├── components/
-│   ├── ui/               # shadcn/ui primitives
-│   └── landing/          # Landing page sections
-├── db/
-│   ├── schema.ts         # Database schema
-│   └── auth-schema.ts    # Auth tables (user, session, account)
-└── lib/
-    ├── auth.ts           # Auth server config
-    ├── auth-client.ts    # Auth client
-    ├── db-connection.ts  # Drizzle + PostgreSQL connection
-    └── utils.ts          # Utilities (cn helper)
-```
 
 ## Database
 
